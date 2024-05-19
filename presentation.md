@@ -28,20 +28,44 @@ Niklas Schmidt _(er/ihn)_
 ---
 
 # TODOs
-- Callables _(oder: Wie ich lernte, Arrays zu lieben)_
-- Callables 2 - _Noch Älter. Härter. Besser._
+- Callables
 - variable Variablen
 - Footguns
   - Backticks
   - 🔥 Spicy Regexes 🔥
   - Zahlen
 - Standard Library aus der Hölle
-- Warum gibt es diese Funktionen?
+- Warum gibt es das?
+- Warum tut es das?
+
+---
+
+# Warnhinweis
+
+**A**ll 
+**C**oding languages 
+**A**re 
+**B**eautiful
+
+---
+
+# Warnhinweis
+
+**A**ll 
+**C**oding languages 
+**A**re 
+**B**eautiful
+
+(außer Python!)
 
 ---
 
 # Callables 
-_(oder: Wie ich lernte, Arrays zu lieben)_
+_oder: Wie ich lernte, Arrays zu lieben_
+
+---
+
+# Callables 
 
 - Typ `callable` kam erst mit PHP 5.4
 
@@ -77,7 +101,6 @@ _(oder: Wie ich lernte, Arrays zu lieben)_
 -  `array_filter($array, $callback)` kam schon mit PHP 4.0.6
 - 5.4 > 4.0.6 ???
 - **Arrays verwenden!** (was auch sonst?)
-
 - `[$object, $methodName]` is ein gültiges `callable`
 
 ---
@@ -88,7 +111,6 @@ _(oder: Wie ich lernte, Arrays zu lieben)_
 -  `array_filter($array, $callback)` kam schon mit PHP 4.0.6
 - 5.4 > 4.0.6 ???
 - **Arrays verwenden!** (was auch sonst?)
-
 - `[$object, $methodName]` is ein gültiges `callable`
 - `[$user, 'mGetId']()` is ein Funktionsaufruf!
 
@@ -100,7 +122,6 @@ _(oder: Wie ich lernte, Arrays zu lieben)_
 -  `array_filter($array, $callback)` kam schon mit PHP 4.0.6
 - 5.4 > 4.0.6 ???
 - **Arrays verwenden!** (was auch sonst?)
-
 - `[$object, $methodName]` is ein gültiges `callable`
 - `[$user, 'mGetId']()` is ein Funktionsaufruf!
 - Wie war das nochmal mit der Parameterreihenfolge?
@@ -109,6 +130,10 @@ _(oder: Wie ich lernte, Arrays zu lieben)_
 
 # Callables 2
 _Noch Älter. Härter. Besser._
+
+---
+
+# Callables 2
 
 - String sind **natürlich** auch gültige Callables
   - `array_filter([...], 'isEven')`
@@ -130,6 +155,11 @@ _Noch Älter. Härter. Besser._
 
   $mapper->$action($user);
   ```
+
+---
+
+# variable Variablen
+_Programmieren mit Meta-Ebene_
 
 ---
 
@@ -191,6 +221,18 @@ var_dump($$$c); // string(8) "traperto"
 
 ---
 
+# Footguns
+
+> Any feature likely to lead to the programmer shooting themselves in the foot.
+
+~ _wiktionary_
+
+---
+
+# Footgun: Backticks
+
+---
+
 # Footgun: Backticks
 
 ```php
@@ -224,11 +266,15 @@ var_dump(`I am the danger.`); // sh: 1: I: not found
 
 # Footgun: 🔥 Spicy Regexes 🔥
 
+---
+
+# Footgun: 🔥 Spicy Regexes 🔥
+
 ```php
 $result = preg_replace(
-	'/[aeiou]/ie',
-	'strtoupper("$0")',
-	'traperto'
+  '/[aeiou]/ie',      // matches any vowel
+  'strtoupper("$0")', // strtoupper(): Make a string uppercase
+  'traperto'
 );
 var_dump($result);
 ```
@@ -239,9 +285,9 @@ var_dump($result);
 
 ```php
 $result = preg_replace(
-	'/[aeiou]/ie',
-	'strtoupper("$0")',
-	'traperto'
+  '/[aeiou]/ie',      // matches any vowel
+  'strtoupper("$0")', // strtoupper(): Make a string uppercase
+  'traperto'
 );
 var_dump($result); // string(8) "trApErtO"
 ```
@@ -252,14 +298,18 @@ var_dump($result); // string(8) "trApErtO"
 
 ```php
 $result = preg_replace(
-  '/[aeiou]/ie',
-	'strtoupper("$0")',
-	'traperto'
+  '/[aeiou]/ie',      // matches any vowel
+  'strtoupper("$0")', // strtoupper(): Make a string uppercase
+  'traperto'
 );
 var_dump($result); // string(8) "trApErtO"
 ```
 
 - Bis PHP 5.6 konnte man mit dem _e_-Modifier Regex-Ergebnisse automatisch `eval()`en.
+
+---
+
+# Footgun: Zahlen
 
 ---
 
@@ -299,6 +349,10 @@ var_dump(12 > 013); // bool(true)
   var_dump(12 > "013"); // bool(false)
   var_dump(12 > "011"); // bool(true)
   ```
+
+---
+
+# Standard Library aus der Hölle
 
 ---
 
@@ -377,97 +431,80 @@ var_dump(12 > 013); // bool(true)
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum gibt es das?
+
+---
+
+# Warum gibt es das?
 
 - `str_rot13()`
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum gibt es das?
 
 - `str_rot13()`
-- `gzgetss()`
-
----
-
-# Warum gibt es diese Funktionen?
-
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-
----
-
-# Warum gibt es diese Funktionen?
-
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-- `php_uname()`
-
----
-
-# Warum gibt es diese Funktionen?
-
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
-
----
-
-# Warum gibt es diese Funktionen?
-
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
 - `str_increment()`
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum gibt es das?
 
 - `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
 - `str_increment()` (_"ABC"_ -> _"ABD"_, _"ZZ"_ -> _"AAA"_)
+- `gzgetss()`
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum gibt es das?
 
 - `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
-- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
 - `str_increment()` (_"ABC"_ -> _"ABD"_, _"ZZ"_ -> _"AAA"_)
+- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
+
+---
+
+# Warum tut es das?
+
+---
+
+# Warum tut es das?
+
+- `php_uname()`
+
+---
+
+# Warum tut es das?
+
+- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
+
+---
+
+# Warum tut es das?
+
+- `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
 - `is_file()`
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum tut es das?
 
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
 - `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
-- `str_increment()` (_"ABC"_ -> _"ABD"_, _"ZZ"_ -> _"AAA"_)
 - `is_file()` (Note: The results of this function are cached.)
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum tut es das?
 
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
 - `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
-- `str_increment()` (_"ABC"_ -> _"ABD"_, _"ZZ"_ -> _"AAA"_)
 - `is_file()` (Note: The results of this function are cached.)
 - `get_current_user()`
 
 ---
 
-# Warum gibt es diese Funktionen?
+# Warum tut es das?
 
-- `str_rot13()`
-- `gzgetss()` (Get line from gz-file pointer and strip HTML tags)
 - `php_uname()` (On some older UNIX platforms, it may not be able to determine the current OS information in which case it will revert to displaying the OS PHP was built on. )
-- `str_increment()` (_"ABC"_ -> _"ABD"_, _"ZZ"_ -> _"AAA"_)
 - `is_file()` (Note: The results of this function are cached.)
 - `get_current_user()` (Gets the name of the owner of the **current PHP script**.)
 
@@ -475,8 +512,8 @@ var_dump(12 > 013); // bool(true)
 
 # `die();`
 
+- Fragen?
 - Resourcen
   - https\://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/
-- Fragen?
 <br>
 - CC BY-NC-SA 4.0
